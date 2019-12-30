@@ -1,0 +1,15 @@
+{
+  "name": "FileBrowser",
+  "version": "1.0.0",
+  "description": "A Online File Browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "WTF",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
