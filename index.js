@@ -1,55 +1,40 @@
 #!/usr/bin/env node
 
 /* modules */
-const express = require('express')
-const fs = require('fs')
-
-/* global object */
-const config = require(`${__dirname}/config.json`)
-const app = express()
+const express = require("express")
+const fs = require("fs")
 
 /* logic */
-// GET / => sendFile ./www/ls.html
-app.use((req, res, next) => {
-	res.set({
-		'Server': 'nginx',
-		'X-Powered-By': 'Unknown'
-	})
-	next()
-})
+const app = express()
 
-app.get('/', (req, res) => res.sendFile(`${__dirname}/www/ls.html`))
+// read config file
+const config = require("./config.json")
+if (process.env.PORT != null && process.env.PORT != '') config.port = process.env.PORT
+console.log(config)
 
-// GET /file => sendFile ./www/file
-app.use('/', express.static(`${process.env.PWD}`))
+// router
+app.get(['/', '/index', '/index.html?'], (req, res) => { res.sendFile(`${__dirname}/www/ls.html`) })
 
-// GET ls?pwd
-app.get('/ls', (req, res) => {
-	let pwd = req.url.replace('/ls?', '')
-	console.log(`ls -> ${pwd}`)
+app.use(express.static(`${process.env.PWD}`))
 
-	let all = fs.readdirSync(`${process.env.PWD}/${pwd}`, { withFileTypes: true })
+app.all('/ls', (req, res, next) => {
+	let query = req.url.replace(/[^\?]*\?/, '')
+	query = decodeURI(query)
+	let path = `${process.env.PWD}/${query}`
+	console.log('query -> ' + path)
+
+	let all = fs.readdirSync(path, { withFileTypes: true })
 	let dirs = []
 	let files = []
 
-	all.forEach(it => {
-		if (it.isDirectory()) {
-			dirs.push(it.name)
-		} else {
-			files.push(it.name)
-		}
-	})
+	all.forEach(it => { (it.isDirectory() ? dirs : files).push(it.name) })
 
-	res.json({
-		pwd: pwd,
-		dirs: dirs,
-		files: files
-	})
+	res.json({ pwd: query, dirs: dirs, files: files })
 })
 
-// 404 => sendFile ./www/404.html
-app.use((req, res) => res.sendFile(`${__dirname}/www/404.html`))
+/* 404 handler */
+app.use((req, res) => { res.status(404).json({ error: 404 }) })
 
-/* listen */
-app.listen(config.port, config.host, () => console.log('server starting...'))
+// listen service
+app.listen(config.port, config.host, () => { console.log(`Visit URL http://${config.host}:${config.port}`) })
 
