@@ -3,6 +3,7 @@
 /* modules */
 const express = require("express")
 const fs = require("fs")
+const path = require("path")
 
 /* logic */
 const app = express()
@@ -15,21 +16,30 @@ console.log(config)
 // router
 app.get(['/', '/index', '/index.html?'], (req, res) => { res.sendFile(`${__dirname}/www/ls.html`) })
 
-app.use(express.static(`${process.env.PWD}`))
-
 app.all('/ls', (req, res, next) => {
-	let query = req.url.replace(/[^\?]*\?/, '')
-	query = decodeURI(query)
-	let path = `${process.env.PWD}/${query}`
-	console.log('query -> ' + path)
+	let query = req._parsedUrl.query
+	// URI解码，并处理.和..目录，同时限定根目录
+	query = path.normalize('/' + decodeURI(query))
+	console.log('query	-> ' + query)
+	let dir = `${process.env.PWD}${query}`
 
-	let all = fs.readdirSync(path, { withFileTypes: true })
+	let all = fs.readdirSync(dir, { withFileTypes: true })
 	let dirs = []
 	let files = []
 
 	all.forEach(it => { (it.isDirectory() ? dirs : files).push(it.name) })
 
 	res.json({ pwd: query, dirs: dirs, files: files })
+})
+
+const expressNativeStaticHandler = express.static(`${process.env.PWD}`)
+app.use((req, res, next) => {
+	console.log('file	-> ' + req.url)
+	const nextWrapper = () => {
+		console.log('404 for ' + req.url)
+		next()
+	}
+	expressNativeStaticHandler(req, res, nextWrapper)
 })
 
 /* 404 handler */
