@@ -4,6 +4,7 @@
 const express = require("express")
 const fs = require("fs")
 const path = require("path")
+const child_process = require("child_process")
 
 /* logic */
 const app = express()
@@ -46,5 +47,5 @@ app.use((req, res, next) => {
 app.use((req, res) => { res.status(404).json({ error: 404 }) })
 
 // listen service
-app.listen(config.port, config.host, () => { console.log(`Visit URL http://${config.host}:${config.port}`) })
+app.listen(config.port, config.host, () => { console.log(`Visit URL http://${ child_process.execSync(`curl 2>/dev/null cip.cc | awk '$0 ~ "IP.*" { print $3; }'`).toString().trim() }:${config.port}`) })
 
