@@ -13,7 +13,7 @@ install: /usr/local/bin/fs
 /usr/local/bin/fs:
 	@echo '请提供root权限，以安装fs脚本:'
 	sudo touch $@ && sudo chmod +x $@
-	sudo su -c "sudo printf '#!/bin/bash\nsudo PORT=\$$PORT node ''$(shell pwd)/index.js\n\n' >> $@"
+	sudo su -c "sudo printf '#!/bin/bash\nsudo PATH=\$$PATH PORT=\$$PORT /usr/bin/env node ''$(shell pwd)/index.js\n\n' >> $@"
 	
 .PHONY: clean
 clean:
