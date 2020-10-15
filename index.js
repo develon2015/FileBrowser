@@ -22,7 +22,8 @@ app.all('/ls', (req, res, next) => {
 	// URI解码，并处理.和..目录，同时限定根目录
 	query = path.normalize('/' + decodeURI(query))
 	console.log('query	-> ' + query)
-	let dir = `${process.env.PWD}${query}`
+	// let dir = `${process.env.PWD}${query}`
+	let dir = `./${query}`
 
 	let all = fs.readdirSync(dir, { withFileTypes: true })
 	let dirs = []
@@ -33,7 +34,8 @@ app.all('/ls', (req, res, next) => {
 	res.json({ pwd: query, dirs: dirs, files: files })
 })
 
-const expressNativeStaticHandler = express.static(`${process.env.PWD}`)
+// const expressNativeStaticHandler = express.static(`${process.env.PWD}`)
+const expressNativeStaticHandler = express.static(`.`)
 app.use((req, res, next) => {
 	console.log('file	-> ' + req.url)
 	const nextWrapper = () => {
@@ -47,5 +49,10 @@ app.use((req, res, next) => {
 app.use((req, res) => { res.status(404).json({ error: 404 }) })
 
 // listen service
-app.listen(config.port, config.host, () => { console.log(`Visit URL http://${ child_process.execSync(`curl 2>/dev/null cip.cc | awk '$0 ~ "IP.*" { print $3; }'`).toString().trim() }:${config.port}`) })
-
+app.listen(config.port, config.host, () => {
+	try {
+		console.log(`Visit URL http://${child_process.execSync(`curl 2>/dev/null cip.cc | awk '$0 ~ "IP.*" { print $3; }'`).toString().trim()}:${config.port}`);
+	} catch(error) {
+		console.log(error);
+	}
+});
