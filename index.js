@@ -72,8 +72,11 @@ app.listen(config.port, config.host, () => {
 });
 // listen program running failed exception
 process.addListener('uncaughtException', (error, /**监听事件名*/name) => {
-	if (error.syscall === 'listen' && error.code === 'EADDRINUSE') {
-		console.log('端口被占用！');
+	if (error.syscall === 'listen') {
+		console.log('TCP服务监听失败！');
+		if (error.code === 'EADDRINUSE') {
+			console.log('端口被占用！');
+		}
 	}
 	console.log('服务器运行失败！');
 });
