@@ -3,6 +3,23 @@ A Online File Browser By Node.js
 
 
 
+### install
+```bash
+git clone https://github.com/develon2015/FileBrowser.git
+yarn install
+yarn link
+```
+
+
+
+# usage
+```bash
+fs
+fs 80
+fs 0.0.0.0 80
+```
+
+
 ### 使用`Cloudflare Workers`建立API
 
 ```JavaScript
