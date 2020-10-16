@@ -22,7 +22,7 @@ if (process.argv.length > 2) { // 从命令行参数提供监听地址
 	} else {
 		config.host = pa;
 		if (pb && pb.match(/^\d+$/)) {
-			config.port = pa;
+			config.port = pb;
 		}
 	}
 }
