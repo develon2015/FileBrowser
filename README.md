@@ -3,7 +3,7 @@ A Online File Browser By Node.js
 
 
 
-### install
+## install
 ```bash
 git clone https://github.com/develon2015/FileBrowser.git
 yarn install
@@ -12,7 +12,7 @@ yarn link
 
 
 
-# usage
+## usage
 ```bash
 fs
 fs 80
