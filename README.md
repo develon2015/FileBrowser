@@ -20,7 +20,7 @@ fs 0.0.0.0 80
 ```
 
 
-### 使用`Cloudflare Workers`建立API
+### note: 使用`Cloudflare Workers`建立API
 
 ```JavaScript
 /**
