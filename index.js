@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 process.title = "HTTP Server";
-const node = require('@develon/js/lib/node');
 
 /* modules */
 const express = require("express")
 const fs = require("fs")
 const path = require("path")
 const child_process = require("child_process")
+const os = require('os');
+
+/* library */
+const node = require('@develon/js/lib/node');
 
 /* logic */
 const app = express()
@@ -72,6 +75,14 @@ app.listen(config.port, config.host, () => {
 	})().catch(error => void console.log('获取公有IP地址失败'));
 	console.log('服务器已启动');
 	console.log(`Visit URL(locale) http://${node.ip().ipv4[0]}:${config.port}`);
+	if (os.platform().match(/win/)) {
+		try {
+			console.log('启动浏览器');
+			child_process.exec(`start http://127.0.0.1${config.port === 80 ? '' : `:${config.port}`}`);
+		} catch (error) {
+			console.log(error);
+		}
+	}
 });
 // listen program running failed exception
 process.addListener('uncaughtException', (error, /**监听事件名*/name) => {
