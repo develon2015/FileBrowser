@@ -1,6 +1,6 @@
 {
-  "name": "file-browser",
-  "version": "1.0.0",
+  "name": "@develon/fs",
+  "version": "1.0.2",
   "description": "A Online File Browser",
   "bin": {
     "fs": "./index.js"
@@ -12,5 +12,9 @@
   "dependencies": {
     "@develon/js": "^1.0.4",
     "express": "^4.17.1"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/develon2015/FileBrowser"
 }
