@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+process.title = "HTTP Server";
+const node = require('@develon/js/lib/node');
 
 /* modules */
 const express = require("express")
@@ -66,9 +68,10 @@ app.listen(config.port, config.host, () => {
 	// console.log(`Visit URL http://${child_process.execSync(`curl 2>/dev/null cip.cc | awk '$0 ~ "IP.*" { print $3; }'`).toString().trim()}:${config.port}`);
 	(async () => {
 		let ip = await getPublicIP();
-		console.log(`Visit URL http://${ip}:${config.port}`);
+		console.log(`Visit URL(public) http://${ip}:${config.port}`);
 	})().catch(error => void console.log('获取公有IP地址失败'));
 	console.log('服务器已启动');
+	console.log(`Visit URL(locale) http://${node.ip().ipv4[0]}:${config.port}`);
 });
 // listen program running failed exception
 process.addListener('uncaughtException', (error, /**监听事件名*/name) => {

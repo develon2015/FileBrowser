@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@develon/js@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.npm.taobao.org/@develon/js/download/@develon/js-1.0.4.tgz?cache=0&sync_timestamp=1604024187651&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40develon%2Fjs%2Fdownload%2F%40develon%2Fjs-1.0.4.tgz#757cd93c61153c77f48588c8ba18696697e84480"
+  integrity sha1-dXzZPGEVPHf0hYjIuhhpZpfoRIA=
+  dependencies:
+    colors "^1.4.0"
+
 accepts@~1.3.7:
   version "1.3.7"
   resolved "https://registry.npm.taobao.org/accepts/download/accepts-1.3.7.tgz#531bc726517a3b2b41f850021c6cc15eaab507cd"
@@ -35,6 +42,11 @@ bytes@3.1.0:
   version "3.1.0"
   resolved "https://registry.npm.taobao.org/bytes/download/bytes-3.1.0.tgz#f6cf7933a360e0588fa9fde85651cdc7f805d1f6"
   integrity sha1-9s95M6Ng4FiPqf3oVlHNx/gF0fY=
+
+colors@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.npm.taobao.org/colors/download/colors-1.4.0.tgz#c50491479d4c1bdaed2c9ced32cf7c7dc2360f78"
+  integrity sha1-xQSRR51MG9rtLJztMs98fcI2D3g=
 
 content-disposition@0.5.3:
   version "0.5.3"

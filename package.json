@@ -10,6 +10,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@develon/js": "^1.0.4",
     "express": "^4.17.1"
   }
 }
