@@ -9,6 +9,10 @@ git clone https://github.com/develon2015/FileBrowser.git
 yarn install
 yarn link
 ```
+Or install from npm:
+```
+yarn global add @develon/fs
+```
 
 
 
