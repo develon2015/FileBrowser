@@ -32,6 +32,16 @@ if (process.argv.length > 2) { // 从命令行参数提供监听地址
 	}
 }
 
+// 跨域OK
+app.use((req, res, next) => {
+	res.set({
+		"Access-Control-Allow-Origin": "*",
+		"Access-Control-Allow-Methods": "*",
+		"Access-Control-Allow-Headers": "*",
+	});
+	next();
+});
+
 // router
 // app.get(['/', '/index', '/index.html?'], (req, res) => { res.sendFile(`${__dirname}/www/ls.html`) })
 app.get(['/', '/index'], (req, res) => { res.sendFile(`${__dirname}/www/ls.html`) }); // 直接展示index.html
