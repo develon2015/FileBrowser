@@ -33,7 +33,8 @@ if (process.argv.length > 2) { // 从命令行参数提供监听地址
 }
 
 // router
-app.get(['/', '/index', '/index.html?'], (req, res) => { res.sendFile(`${__dirname}/www/ls.html`) })
+// app.get(['/', '/index', '/index.html?'], (req, res) => { res.sendFile(`${__dirname}/www/ls.html`) })
+app.get(['/', '/index'], (req, res) => { res.sendFile(`${__dirname}/www/ls.html`) }); // 直接展示index.html
 
 app.all('/ls', (req, res, next) => {
 	let query = req._parsedUrl.query
