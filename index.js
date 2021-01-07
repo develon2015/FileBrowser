@@ -33,12 +33,15 @@ if (process.argv.length > 2) { // 从命令行参数提供监听地址
 }
 
 // 跨域OK
-app.options('*', (req, res) => {
+app.use((req, res, next) => {
 	res.set({
 		"Access-Control-Allow-Origin": "*",
 		"Access-Control-Allow-Methods": "*",
 		"Access-Control-Allow-Headers": "*",
 	});
+	next();
+});
+app.options('*', (req, res) => {
 	res.end();
 });
 
