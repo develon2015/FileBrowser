@@ -1,6 +1,6 @@
 {
   "name": "@develon/fs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Online File Browser",
   "bin": {
     "fs": "./index.js"
