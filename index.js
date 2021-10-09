@@ -113,7 +113,7 @@ process.addListener('uncaughtException', (error, /**监听事件名*/name) => {
 function getPublicIP() {
 	return new Promise((resolve, reject) => {
 		try {
-			let child = child_process.exec(`curl "http://ip.father.workers.dev"`, {}, (error, stdout, stderr) => {
+			let child = child_process.exec(`curl "http://ip.my-api.workers.dev"`, {}, (error, stdout, stderr) => {
 				if (!!!error) {
 					resolve(stdout);
 				}
