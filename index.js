@@ -52,7 +52,7 @@ app.get(['/', '/index'], (req, res) => { res.sendFile(`${__dirname}/www/ls.html`
 app.all('/ls', (req, res, next) => {
 	let query = req._parsedUrl.query
 	// URI解码，并处理.和..目录，同时限定根目录
-	query = path.normalize('/' + decodeURI(query))
+	query = path.posix.normalize('/' + decodeURI(query))
 	console.log('query	-> ' + query)
 	// let dir = `${process.env.PWD}${query}`
 	let dir = `./${query}`
@@ -88,7 +88,9 @@ app.listen(config.port, config.host, () => {
 		console.log(`Visit URL(public) http://${ip}:${config.port}`);
 	})().catch(error => void console.log('获取公有IP地址失败'));
 	console.log('服务器已启动');
-	console.log(`Visit URL(locale) http://${node.ip().ipv4[0]}:${config.port}`);
+	node.network.ip().ipv4.forEach(it => {
+		console.log(`Visit URL(locale) http://${it}:${config.port}`);
+	});
 	if (os.platform().match(/win/)) {
 		try {
 			console.log('启动浏览器');
@@ -106,7 +108,8 @@ process.addListener('uncaughtException', (error, /**监听事件名*/name) => {
 			console.log('端口被占用！');
 		}
 	}
-	console.log('服务器运行失败！');
+	console.log('未处理的异常！');
+	console.error(error);
 });
 
 /** fetch public IP address */

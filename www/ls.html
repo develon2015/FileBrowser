@@ -76,7 +76,9 @@
 	    tableLs.innerHTML += `<tr><td><a class="dir" href="javascript: ls('${r.pwd}/${r.dirs[i]}')">${handleName(r.dirs[i])}</a></td></tr>`;
         }
         for (let i = 0; i < r.files.length; i ++ ) {
-            tableLs.innerHTML += `<tr><td><a class="file" target="_blank" href=".${r.pwd}/${r.files[i]}">${handleName(r.files[i])}</a></td></tr>`;
+            var _href = '.' + r.pwd + '/' + r.files[i];
+            _href = _href.replace('//', '/');
+            tableLs.innerHTML += `<tr><td><a class="file" target="_blank" href="${_href}">${handleName(r.files[i])}</a></td></tr>`;
         }
     }
 

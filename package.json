@@ -1,6 +1,6 @@
 {
   "name": "@develon/fs",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A Online File Browser",
   "bin": {
     "fs": "./index.js"
@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@develon/js": "^1.0.4",
+    "@develon/js": "^2.0.0",
     "express": "^4.17.1"
   },
   "publishConfig": {

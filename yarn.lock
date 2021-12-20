@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@develon/js@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.npm.taobao.org/@develon/js/download/@develon/js-1.0.4.tgz?cache=0&sync_timestamp=1604024187651&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40develon%2Fjs%2Fdownload%2F%40develon%2Fjs-1.0.4.tgz#757cd93c61153c77f48588c8ba18696697e84480"
-  integrity sha1-dXzZPGEVPHf0hYjIuhhpZpfoRIA=
+"@develon/js@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/@develon/js/download/@develon/js-2.0.0.tgz#bc274a6336d8ee65c836bc2ac21107f8f671a6bd"
+  integrity sha1-vCdKYzbY7mXINrwqwhEH+PZxpr0=
   dependencies:
     colors "^1.4.0"
 
