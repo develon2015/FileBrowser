@@ -1,6 +1,6 @@
 {
   "name": "@develon/fs",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A Online File Browser",
   "bin": {
     "fs": "./index.js"
@@ -16,5 +16,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/develon2015/FileBrowser"
+  "homepage": "https://github.com/develon2015/FileBrowser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/develon2015/FileBrowser.git"
+  }
 }
